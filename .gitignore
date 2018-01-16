@@ -4,4 +4,4 @@ target/
 .classpath
 .settings/
 .project
-IocDemo.iml
+mybatisDemo.iml

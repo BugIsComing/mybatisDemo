@@ -37,8 +37,6 @@
         </environment>
     </environments>
 
-
-
     <mappers>
         <mapper resource="mapper/userMapper.xml"/>
     </mappers>

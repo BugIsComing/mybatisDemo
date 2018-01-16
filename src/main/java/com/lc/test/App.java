@@ -19,16 +19,14 @@ public class App
 {
     public static void main( String[] args )
     {
-        //mybatis的配置文件
+        /**
+         * 配置方式参考官网http://www.mybatis.org/mybatis-3/zh/getting-started.html
+         */
         String resource = "Configuration.xml";
-
         InputStream is = App.class.getClassLoader().getResourceAsStream(resource);
-
         SqlSessionFactory sessionFactory = new SqlSessionFactoryBuilder().build(is);
 
         SqlSession session = sessionFactory.openSession();
-
-
         UserMapper userMapper = session.getMapper(UserMapper.class);
 //        User user = new User();
 //        for(int i=1;i<=10;i++){
@@ -39,7 +37,8 @@ public class App
 
         //执行查询返回一个唯一user对象的sql
         Map<String,Object> params = new HashMap<String,Object>();
-        params.put("name","lc");
+        //params.put("name","lc");
+        params.put("age",2);
         List<User> userList = userMapper.getUserByParam(params);
 
         for (User ur : userList){

@@ -33,6 +33,8 @@
                 <property name="url" value="${db.url}" />
                 <property name="username" value="${db.username}" />
                 <property name="password" value="${db.password}" />
+                <!--设置自动提交-->
+                <property name="defaultAutoCommit" value="true" />
             </dataSource>
         </environment>
     </environments>

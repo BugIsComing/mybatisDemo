@@ -47,8 +47,9 @@ public class App
 
         /**
          * session必须提交，否则无法写入到数据库
+         * 如果在Configuration.xml中设置了defaultAutoCommit，则不需要这一行
          */
-        session.commit();
+        //session.commit();
         session.close();
     }
 }

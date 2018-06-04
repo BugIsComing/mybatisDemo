@@ -27,6 +27,9 @@ public class App
         SqlSessionFactory sessionFactory = new SqlSessionFactoryBuilder().build(is);
 
         SqlSession session = sessionFactory.openSession();
+        /**
+         * 通过Mapper接口访问mybatis
+         */
         UserMapper userMapper = session.getMapper(UserMapper.class);
 //        User user = new User();
 //        for(int i=1;i<=10;i++){
@@ -40,6 +43,11 @@ public class App
         //params.put("name","lc");
         params.put("age",2);
         List<User> userList = userMapper.getUserByParam(params);
+
+        /**
+         * 通过传统的API方式访问mybatis
+         */
+        userList =  session.selectList("userMapper.getUserByParam",params);
 
         for (User ur : userList){
             System.out.println(ur.toString());

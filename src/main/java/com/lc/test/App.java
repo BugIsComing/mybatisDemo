@@ -7,21 +7,16 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import java.io.InputStream;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
- * Hello world!
- *
+ * @author ifly_lc
+ *  配置方式参考官网http://www.mybatis.org/mybatis-3/zh/getting-started.html
  */
 public class App
 {
     public static void main( String[] args )
     {
-        /**
-         * 配置方式参考官网http://www.mybatis.org/mybatis-3/zh/getting-started.html
-         */
         /**
          * 将运行时生成的代理类（.class文件）输出到本地路径下；
          */
@@ -31,21 +26,18 @@ public class App
         SqlSessionFactory sessionFactory = new SqlSessionFactoryBuilder().build(is);
 
         SqlSession session = sessionFactory.openSession();
-        /**
-         * 通过Mapper接口访问mybatis
-         * 这一句执行完之后会在com.sun.proxy路径下生成一个代理类，前提是将sun.misc.ProxyGenerator.saveGeneratedFiles设置为true
-         */
-        //UserMapper userMapper = session.getMapper(UserMapper.class);
-//        User user = new User();
-//        for(int i=1;i<=10;i++){
-//            user.setName("LC");
-//            user.setAge(i);
-//            userMapper.saveUser(user);
-//        }
+
 
         //执行查询返回一个唯一user对象的sql
         Map<String,Object> params = new HashMap<String,Object>();
+
+
+        params.put("id",45);
+        params.put("age",2);
+        params.put("name", String.valueOf(new Random().nextInt(10)));
+        session.update("updateUser",params);
         //params.put("name","lc");
+        params.clear();
         params.put("age",2);
         List<User> userList = null;
         //userList = userMapper.getUserByParam(params);
@@ -64,6 +56,18 @@ public class App
          * 如果在Configuration.xml中设置了defaultAutoCommit，则不需要这一行
          */
         //session.commit();
+
+        /**
+         * 通过Mapper接口访问mybatis
+         * 这一句执行完之后会在com.sun.proxy路径下生成一个代理类，前提是将sun.misc.ProxyGenerator.saveGeneratedFiles设置为true
+         */
+        //UserMapper userMapper = session.getMapper(UserMapper.class);
+//        User user = new User();
+//        for(int i=1;i<=10;i++){
+//            user.setName("LC");
+//            user.setAge(i);
+//            userMapper.saveUser(user);
+//        }
         session.close();
     }
 }

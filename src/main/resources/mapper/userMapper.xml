@@ -3,13 +3,13 @@
 <!--namespace需要指出对应的接口文件，各个id映射为接口方法-->
 <mapper namespace="com.lc.dao.UserMapper">
     <resultMap id="user" type="user">
-        <id column="id" property="id" />
-        <result column="name" property="name" />
-        <result column="age" property="age" />
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="age" property="age"/>
     </resultMap>
 
     <!-- 查询条件-->
-    <sql id = "queryDynSql">
+    <sql id="queryDynSql">
         <trim prefix="WHERE" prefixOverrides="AND |OR ">
             <if test="id != null">
                 <![CDATA[ AND ID =${id} ]]>
@@ -17,7 +17,7 @@
             <if test="name != null">
                 <![CDATA[AND name like '%${name}%']]>
             </if>
-            <if test = "age != null">
+            <if test="age != null">
                 <![CDATA[ AND age =${age} ]]>
             </if>
         </trim>
@@ -27,14 +27,25 @@
         <![CDATA[
             SELECT * FROM user
          ]]>
-        <include refid="queryDynSql" />
+        <include refid="queryDynSql"/>
     </select>
 
     <insert id="saveUser" parameterType="user">
         <![CDATA[
+
             INSERT INTO user(name,age)
             VALUES
             (#{name},#{age})
-         ]]>
+
+        ]]>
     </insert>
+
+    <update id="updateUser" parameterType="map">
+        <![CDATA[
+
+          update user set name = #{name},
+          age = #{age}
+          where id = #{id}
+        ]]>
+    </update>
 </mapper>

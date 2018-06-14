@@ -15,13 +15,17 @@ import java.util.Map;
  * Hello world!
  *
  */
-public class App 
+public class App
 {
     public static void main( String[] args )
     {
         /**
          * 配置方式参考官网http://www.mybatis.org/mybatis-3/zh/getting-started.html
          */
+        /**
+         * 将运行时生成的代理类（.class文件）输出到本地路径下；
+         */
+        System.getProperties().put("sun.misc.ProxyGenerator.saveGeneratedFiles", "true");
         String resource = "Configuration.xml";
         InputStream is = App.class.getClassLoader().getResourceAsStream(resource);
         SqlSessionFactory sessionFactory = new SqlSessionFactoryBuilder().build(is);
@@ -29,8 +33,9 @@ public class App
         SqlSession session = sessionFactory.openSession();
         /**
          * 通过Mapper接口访问mybatis
+         * 这一句执行完之后会在com.sun.proxy路径下生成一个代理类，前提是将sun.misc.ProxyGenerator.saveGeneratedFiles设置为true
          */
-        UserMapper userMapper = session.getMapper(UserMapper.class);
+        //UserMapper userMapper = session.getMapper(UserMapper.class);
 //        User user = new User();
 //        for(int i=1;i<=10;i++){
 //            user.setName("LC");
@@ -42,12 +47,13 @@ public class App
         Map<String,Object> params = new HashMap<String,Object>();
         //params.put("name","lc");
         params.put("age",2);
-        List<User> userList = userMapper.getUserByParam(params);
+        List<User> userList = null;
+        //userList = userMapper.getUserByParam(params);
 
         /**
          * 通过传统的API方式访问mybatis
          */
-        userList =  session.selectList("userMapper.getUserByParam",params);
+        userList =  session.selectList("getUserByParam",params);
 
         for (User ur : userList){
             System.out.println(ur.toString());

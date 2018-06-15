@@ -37,15 +37,29 @@
             VALUES
             (#{name},#{age})
 
+
         ]]>
     </insert>
 
     <update id="updateUser" parameterType="map">
         <![CDATA[
 
+
+
+
           update user set name = #{name},
           age = #{age}
           where id = #{id}
+
+
+
         ]]>
     </update>
+
+    <delete id="deleteUser" parameterType="map">
+        <![CDATA[
+          delete from user
+        ]]>
+        <include refid="queryDynSql"/>
+    </delete>
 </mapper>

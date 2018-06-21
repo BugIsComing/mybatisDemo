@@ -7,7 +7,10 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import java.io.InputStream;
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Random;
 
 /**
  * @author ifly_lc
@@ -16,7 +19,7 @@ import java.util.*;
 public class App {
     public static void main(String[] args) {
         /**
-         * 将运行时生成的代理类（.class文件）输出到本地路径下；
+         * 将运行时生成的代理类（.class文件）输出到本地路径下；在通过Mapper方式时才会动态生成class文件
          */
         System.getProperties().put("sun.misc.ProxyGenerator.saveGeneratedFiles", "true");
         String resource = "Configuration.xml";
@@ -25,6 +28,7 @@ public class App {
 
         SqlSession session = sessionFactory.openSession();
 
+        //UserMapper userMapper = session.getMapper(UserMapper.class);
 
         //执行查询返回一个唯一user对象的sql
         Map<String, Object> params = new HashMap<String, Object>();

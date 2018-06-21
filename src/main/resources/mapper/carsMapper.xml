@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lc.dao.CarsMapper">
+    <resultMap id="carsResult" type="cars">
+        <id property="id" column="carid"/>
+        <result property="type" column="cartype"/>
+        <association property="engine" resultMap="engineResult"/>
+        <association property="brake" resultMap="brakeResult"/>
+    </resultMap>
+    <resultMap id="engineResult" type="engine">
+        <result property="type" column="enginetype"/>
+        <result property="cylinder" column="enginecylinders"/>
+    </resultMap>
+    <resultMap id="brakeResult" type="brake">
+        <result property="type" column="brakestype"/>
+    </resultMap>
+
+    <select id="selectCars" resultMap="carsResult">
+        select * from cars
+    </select>
+
+    <insert id="insertCars" parameterType="map">
+        <![CDATA[
+        insert into cars (carid, cartype, enginetype, enginecylinders, brakestype) values(#{carid},#{cartype},#{enginetype},#{enginecylinders},#{brakestype})
+
+        ]]>
+    </insert>
+
+</mapper>

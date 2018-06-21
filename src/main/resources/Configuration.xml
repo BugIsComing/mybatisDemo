@@ -9,6 +9,9 @@
     <!-- 取别名 -->
     <typeAliases>
         <typeAlias  type="com.lc.model.User" alias="user"/>
+        <typeAlias type="com.lc.model.Cars" alias="cars"/>
+        <typeAlias type="com.lc.model.Brake" alias="brake"/>
+        <typeAlias type="com.lc.model.Engine" alias="engine"/>
     </typeAliases>
 
     <!--<environments default="development">-->
@@ -41,6 +44,7 @@
 
     <mappers>
         <mapper resource="mapper/userMapper.xml"/>
+        <mapper resource="mapper/carsMapper.xml"/>
     </mappers>
 
 </configuration>

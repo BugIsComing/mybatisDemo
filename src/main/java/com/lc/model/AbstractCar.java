@@ -2,18 +2,18 @@ package com.lc.model;
 
 /**
  * @author ifly_lc
- * Cars类用于试验一对一的关联查询
+ * 抽象类，由于要测试不同的情况，需要定义不同的子类，因此将子类公共属性提取出来
  */
-public class Cars {
+public abstract class AbstractCar {
     private int id;
     private String type;
     private Engine engine;
     private Brake brake;
 
-    public Cars() {
+    public AbstractCar() {
     }
 
-    public Cars(int id, String type, Engine engine, Brake brake) {
+    public AbstractCar(int id, String type, Engine engine, Brake brake) {
         this.id = id;
         this.type = type;
         this.engine = engine;
@@ -54,7 +54,7 @@ public class Cars {
 
     @Override
     public String toString() {
-        return "Cars{" +
+        return "AbstractCar{" +
                 "id=" + id +
                 ", type='" + type + '\'' +
                 ", engine=" + engine +

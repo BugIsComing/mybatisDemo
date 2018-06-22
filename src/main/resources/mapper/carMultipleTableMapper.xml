@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lc.dao.CarMultipleTableMapper">
+    <!--这种方式需要对每一个包含的对象做一次查询-->
+    <resultMap id="carMultipleTableResult" type="carMultipleTable">
+        <id property="id" column="carid"/>
+        <result property="type" column="cartype"/>
+        <result property="engineid" column="engineid"/>
+        <result property="brakeid" column="brakeid"/>
+        <association property="engine" select="selectEngineTest" column="engineid"/>
+        <association property="brake" select="selectBrakeTest" column="brakeid"/>
+    </resultMap>
+    <resultMap id="engineResult" type="engine">
+        <result property="type" column="enginetype"/>
+        <result property="cylinder" column="enginecylinders"/>
+    </resultMap>
+    <resultMap id="brakeResult" type="brake">
+        <result property="type" column="braketype"/>
+    </resultMap>
+    <!--通过join操作，只查询一次数据库，然后再做映射-->
+    <resultMap id="carsTestResultOnce" type="carMultipleTable">
+        <id property="id" column="carid"/>
+        <result property="type" column="cartype"/>
+        <result property="engineid" column="engineid"/>
+        <result property="brakeid" column="brakeid"/>
+        <association property="engine" resultMap="engineResult"/>
+        <association property="brake" resultMap="brakeResult"/>
+    </resultMap>
+
+    <select id="selectCarsTest" resultMap="carMultipleTableResult">
+        select ct.*  from car_test ct
+    </select>
+    <select id="selectEngineTest" resultMap="engineResult">
+        select et.*  from engine_test et where et.engineid = #{engineid}
+    </select>
+    <select id="selectBrakeTest" resultMap="brakeResult">
+        select bt.*  from brake_test bt where bt.brakeid = #{brakeid}
+    </select>
+
+    <select id="selectCarsTestQueryOnce" resultMap="carsTestResultOnce">
+        select ct.carid,ct.cartype as type,ct.engineid,ct.brakeid,et.enginetype as enginetype,et.enginecylinders as enginecylinders,bt.braketype as braketype  from car_test ct, engine_test et, brake_test bt where ct.engineid = et.engineid and ct.brakeid = bt.brakeid
+    </select>
+
+</mapper>

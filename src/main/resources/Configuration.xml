@@ -8,26 +8,14 @@
 
     <!-- 取别名 -->
     <typeAliases>
-        <typeAlias  type="com.lc.model.User" alias="user"/>
-        <typeAlias type="com.lc.model.Cars" alias="cars"/>
-        <typeAlias type="com.lc.model.Cars1" alias="cars1"/>
+        <typeAlias type="com.lc.model.User" alias="user"/>
+        <typeAlias type="com.lc.model.CarSingleTable" alias="carSingleTable"/>
+        <typeAlias type="com.lc.model.CarMultipleTable" alias="carMultipleTable"/>
         <typeAlias type="com.lc.model.Brake" alias="brake"/>
         <typeAlias type="com.lc.model.Engine" alias="engine"/>
     </typeAliases>
 
-    <!--<environments default="development">-->
-        <!--<environment id="development">-->
-            <!--<transactionManager type="JDBC" />-->
-            <!--&lt;!&ndash; 配置数据库连接信息 &ndash;&gt;-->
-            <!--<dataSource type="POOLED">-->
-                <!--<property name="driver" value="com.mysql.jdbc.Driver" />-->
-                <!--<property name="url" value="jdbc:mysql://localhost:3306/lctest" />-->
-                <!--<property name="username" value="root" />-->
-                <!--&lt;!&ndash;<property name="password" value="xxx" />&ndash;&gt;-->
-                <!--<property name="password" value="123456" />-->
-            <!--</dataSource>-->
-        <!--</environment>-->
-    <!--</environments>-->
+
 
     <environments default="development">
         <environment id="development">
@@ -45,8 +33,8 @@
 
     <mappers>
         <mapper resource="mapper/userMapper.xml"/>
-        <mapper resource="mapper/carsMapper.xml"/>
-        <mapper resource="mapper/carsTestMapper.xml"/>
+        <mapper resource="mapper/carMultipleTableMapper.xml"/>
+        <mapper resource="mapper/carSingleTableMapper.xml"/>
     </mappers>
 
 </configuration>

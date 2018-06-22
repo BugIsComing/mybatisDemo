@@ -38,7 +38,10 @@
     </select>
 
     <select id="selectCarsTestQueryOnce" resultMap="carsTestResultOnce">
-        select ct.carid,ct.cartype as type,ct.engineid,ct.brakeid,et.enginetype as enginetype,et.enginecylinders as enginecylinders,bt.braketype as braketype  from car_test ct, engine_test et, brake_test bt where ct.engineid = et.engineid and ct.brakeid = bt.brakeid
+        select ct.carid,ct.cartype as type,ct.engineid,ct.brakeid,et.enginetype as enginetype,
+        et.enginecylinders as enginecylinders,bt.braketype as braketype
+        from car_test ct, engine_test et,brake_test bt where ct.engineid = et.engineid
+        and ct.brakeid = bt.brakeid
     </select>
 
 </mapper>

@@ -13,6 +13,8 @@
         <typeAlias type="com.lc.model.CarMultipleTable" alias="carMultipleTable"/>
         <typeAlias type="com.lc.model.Brake" alias="brake"/>
         <typeAlias type="com.lc.model.Engine" alias="engine"/>
+        <typeAlias type="com.lc.model.Phone" alias="phone"/>
+        <typeAlias type="com.lc.model.PhoneUser" alias="phoneUser"/>
     </typeAliases>
 
 
@@ -35,6 +37,7 @@
         <mapper resource="mapper/userMapper.xml"/>
         <mapper resource="mapper/carMultipleTableMapper.xml"/>
         <mapper resource="mapper/carSingleTableMapper.xml"/>
+        <mapper resource="mapper/phoneMapper.xml"/>
     </mappers>
 
 </configuration>

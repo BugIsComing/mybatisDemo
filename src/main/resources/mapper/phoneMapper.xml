@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lc.dao.PhoneMapper">
+    <resultMap id="phoneUserResult" type="phoneUser">
+        <id property="userId" column="user_id"/>
+        <collection property="phoneList" ofType="phone" select="selectPhone" column="user_id"/>
+    </resultMap>
+    <resultMap id="phoneResult" type="phone">
+        <id property="phoneId" column="phone_id"/>
+        <result property="phoneNum" column="phone_number"/>
+        <result property="userId" column="user_id"/>
+    </resultMap>
+
+    <select id="selectPhoneUser" resultMap="phoneUserResult">
+        select * from phone_user
+    </select>
+
+    <select id="selectPhone" resultMap="phoneResult">
+        select * from phone t where t.user_id = #{user_id}
+    </select>
+</mapper>

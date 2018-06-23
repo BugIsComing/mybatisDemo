@@ -10,6 +10,15 @@
         <result property="phoneNum" column="phone_number"/>
         <result property="userId" column="user_id"/>
     </resultMap>
+    <resultMap id="phoneResultOnce" type="phone">
+        <id property="phoneId" column="phone_id"/>
+        <result property="phoneNum" column="phone_number"/>
+        <result property="userId" column="user_id_1"/>
+    </resultMap>
+    <resultMap id="phoneUserOnceResult" type="phoneUser">
+        <id property="userId" column="user_id"/>
+        <collection property="phoneList" ofType="phone" resultMap="phoneResultOnce"/>
+    </resultMap>
 
     <select id="selectPhoneUser" resultMap="phoneUserResult">
         select * from phone_user
@@ -17,5 +26,9 @@
 
     <select id="selectPhone" resultMap="phoneResult">
         select * from phone t where t.user_id = #{user_id}
+    </select>
+
+    <select id="selectPhoneUserOnce" resultMap="phoneUserOnceResult">
+        select pu.*,ps.phone_id,ps.phone_number,ps.user_id as user_id_1 from phone_user pu,phone ps where pu.user_id = ps.user_id
     </select>
 </mapper>

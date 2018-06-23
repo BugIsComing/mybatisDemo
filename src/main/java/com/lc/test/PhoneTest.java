@@ -23,6 +23,11 @@ public class PhoneTest {
         for (PhoneUser car : carsList) {
             System.out.println(car.toString());
         }
+        //查询一次数据库
+        carsList = session.selectList("selectPhoneUserOnce");
+        for (PhoneUser car : carsList) {
+            System.out.println(car.toString());
+        }
         session.close();
     }
 }

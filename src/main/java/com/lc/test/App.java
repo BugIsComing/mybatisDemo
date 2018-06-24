@@ -57,6 +57,10 @@ public class App {
         params.put("age", 2);
         List<User> userList;
         userList = session.selectList("getUserByParam", params);
+        /**
+         * 相同语句执行两次，试验缓存，试验结果debug查看第二次查询是否打印查询的SQL
+         */
+        userList = session.selectList("getUserByParam", params);
 
         for (User ur : userList) {
             System.out.println(ur.toString());

@@ -6,6 +6,12 @@
     <!--查看官网如何设置日志,在maven中引入了log4j后不需要设置setting，只需要配置log4j.properties即可-->
     <!--http://www.mybatis.org/mybatis-3/zh/logging.html-->
 
+    <settings>
+        <setting name="cacheEnabled" value="true"/>
+        <!--缓存机制，可以为SESSION或者STATEMENT，SESSIONG表示一个sessiong中所有的查询都会缓存-->
+        <setting name="localCacheScope" value="SESSION"/>
+    </settings>
+    
     <!-- 取别名 -->
     <typeAliases>
         <typeAlias type="com.lc.model.User" alias="user"/>

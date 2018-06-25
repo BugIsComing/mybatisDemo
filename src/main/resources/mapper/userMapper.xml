@@ -62,4 +62,16 @@
         ]]>
         <include refid="queryDynSql"/>
     </delete>
+
+    <select id="getUserByAgeAndName" resultMap="user">
+        <![CDATA[
+            SELECT * FROM user where name = #{name} and age = #{age}
+         ]]>
+    </select>
+
+    <select id="getUserByNameAndAge" resultMap="user">
+        <![CDATA[
+            SELECT * FROM user where age = #{age} and name = #{name}
+         ]]>
+    </select>
 </mapper>

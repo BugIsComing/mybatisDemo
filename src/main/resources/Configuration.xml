@@ -8,7 +8,7 @@
 
     <settings>
         <setting name="cacheEnabled" value="true"/>
-        <!--缓存机制，可以为SESSION或者STATEMENT，SESSIONG表示一个sessiong中所有的查询都会缓存-->
+        <!--缓存机制，可以为SESSION或者STATEMENT，SESSIONG表示一个sessiong中所有的查询都会缓存,statement表示只对当前的查询语句进行缓存，以往查询的SQL都会被清除-->
         <setting name="localCacheScope" value="SESSION"/>
     </settings>
     

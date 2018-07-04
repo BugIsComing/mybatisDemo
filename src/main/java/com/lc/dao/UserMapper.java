@@ -23,7 +23,7 @@ public interface UserMapper {
      * @param params
      * @return
      */
-    public List<User> getUserByParam(Map<String,Object> params);
-    public void saveUser(User user);
-    public void updateUser(Map<String,Object> params);
+//    public List<User> getUserByParam(Map<String,Object> params);
+//    public void saveUser(User user);
+//    public void updateUser(Map<String,Object> params);
 }

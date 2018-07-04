@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!--namespace需要指出对应的接口文件，各个id映射为接口方法-->
+<mapper namespace="com.lc.dao.CacheMapper">
+    <cache/>
+    <resultMap id="user" type="user">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="age" property="age"/>
+    </resultMap>
+
+    <!-- 查询条件-->
+    <sql id="queryDynSql">
+        <trim prefix="WHERE" prefixOverrides="AND |OR ">
+            <if test="id != null">
+                <![CDATA[ AND ID =${id} ]]>
+            </if>
+            <if test="name != null">
+                <![CDATA[AND name like '%${name}%']]>
+            </if>
+            <if test="age != null">
+                <![CDATA[ AND age =${age} ]]>
+            </if>
+        </trim>
+    </sql>
+
+    <select id="getUserByParam" resultMap="user" useCache="true">
+        <![CDATA[
+            SELECT * FROM user1
+         ]]>
+        <include refid="queryDynSql"/>
+    </select>
+</mapper>

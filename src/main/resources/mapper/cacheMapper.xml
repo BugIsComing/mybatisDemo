@@ -24,9 +24,9 @@
         </trim>
     </sql>
 
-    <select id="getUserByParam" resultMap="user" useCache="true">
+    <select id="testSecondCache" resultMap="user" useCache="true">
         <![CDATA[
-            SELECT * FROM user1
+            SELECT * FROM user
          ]]>
         <include refid="queryDynSql"/>
     </select>

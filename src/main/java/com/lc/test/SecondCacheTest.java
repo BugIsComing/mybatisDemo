@@ -18,5 +18,8 @@ public class SecondCacheTest {
 
         SqlSession session1 = sessionFactory.openSession();
         SqlSession session2 = sessionFactory.openSession();
+        session1.selectList("testSecondCache");
+        session2.selectList("testSecondCache");
+        System.out.println("test");
     }
 }

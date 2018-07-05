@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <!--namespace需要指出对应的接口文件，各个id映射为接口方法-->
 <mapper namespace="com.lc.dao.CacheMapper">
-    <cache/>
+    <cache eviction="FIFO" flushInterval="60000" size="512" readOnly="true"/>
     <resultMap id="user" type="user">
         <id column="id" property="id"/>
         <result column="name" property="name"/>
@@ -28,6 +28,6 @@
         <![CDATA[
             SELECT * FROM user
          ]]>
-        <include refid="queryDynSql"/>
+        <!--<include refid="queryDynSql"/>-->
     </select>
 </mapper>

@@ -28,7 +28,7 @@ public class App {
 
         SqlSession session = sessionFactory.openSession();
 
-        //UserMapper userMapper = session.getMapper(UserMapper.class);
+        UserMapper userMapper = session.getMapper(UserMapper.class);
 
         //执行查询返回一个唯一user对象的sql
         Map<String, Object> params = new HashMap<String, Object>();
@@ -78,6 +78,10 @@ public class App {
          */
         //session.commit();
 
+        /**
+         * 测试Mapper代理如何生成
+         */
+        userMapper.getUserByParam(params);
         session.close();
     }
 }

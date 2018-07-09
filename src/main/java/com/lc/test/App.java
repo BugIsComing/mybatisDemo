@@ -28,6 +28,9 @@ public class App {
 
         SqlSession session = sessionFactory.openSession();
 
+        /**
+         * 这一句生成class文件
+         */
         UserMapper userMapper = session.getMapper(UserMapper.class);
 
         //执行查询返回一个唯一user对象的sql

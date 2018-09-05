@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lc.dao.DepartmentMapper">
+    <resultMap id="department" type="department">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="pid" property="pid"/>
+        <collection property="children" ofType="department" select="selectChildren" column="id"/>
+    </resultMap>
+
+    <select id="selectAll" parameterType="java.lang.String" resultMap="department">
+        SELECT * FROM department where id = #{id}
+    </select>
+    <select id="selectChildren" parameterType="java.lang.String" resultMap="department">
+        SELECT * FROM department where pid = #{id}
+    </select>
+</mapper>

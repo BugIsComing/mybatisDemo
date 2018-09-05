@@ -21,6 +21,7 @@
         <typeAlias type="com.lc.model.Engine" alias="engine"/>
         <typeAlias type="com.lc.model.Phone" alias="phone"/>
         <typeAlias type="com.lc.model.PhoneUser" alias="phoneUser"/>
+        <typeAlias type="com.lc.model.Department" alias="department"/>
     </typeAliases>
 
 
@@ -45,6 +46,7 @@
         <mapper resource="mapper/carSingleTableMapper.xml"/>
         <mapper resource="mapper/phoneMapper.xml"/>
         <mapper resource="mapper/cacheMapper.xml"/>
+        <mapper resource="mapper/departmentMapper.xml"/>
     </mappers>
 
 </configuration>

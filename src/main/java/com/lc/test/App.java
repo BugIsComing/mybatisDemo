@@ -24,6 +24,10 @@ public class App {
         System.getProperties().put("sun.misc.ProxyGenerator.saveGeneratedFiles", "true");
         String resource = "Configuration.xml";
         InputStream is = App.class.getClassLoader().getResourceAsStream(resource);
+        /**
+         * 此处build没有传递environment，则使用配置文件中environment的Default
+         * 如果要选择不同的数据源，可以使用build(InputStream inputStream, String environment)
+         */
         SqlSessionFactory sessionFactory = new SqlSessionFactoryBuilder().build(is);
 
         SqlSession session = sessionFactory.openSession();

@@ -53,9 +53,7 @@
 
 
         <!-- 列出要生成代码的所有表，这里配置的是不生成Example文件,user_copy复制于user表 -->
-        <table tableName="user_copy" domainObjectName="UserInfoPO"
-               enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
-               enableSelectByExample="false" selectByExampleQueryId="false" >
+        <table tableName="user_copy" domainObjectName="UserInfoPO">
             <property name="useActualColumnNames" value="false"/>
         </table>
     </context>

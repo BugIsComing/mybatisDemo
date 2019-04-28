@@ -2,10 +2,7 @@ package com.lc.test;
 
 import com.lc.model.PhoneUser;
 import org.apache.ibatis.session.SqlSession;
-import org.apache.ibatis.session.SqlSessionFactory;
-import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
-import java.io.InputStream;
 import java.util.List;
 
 /**
@@ -13,12 +10,7 @@ import java.util.List;
  */
 public class PhoneTest {
     public static void main(String[] args) {
-        String resource = "Configuration.xml";
-        InputStream is = App.class.getClassLoader().getResourceAsStream(resource);
-        SqlSessionFactory sessionFactory = new SqlSessionFactoryBuilder().build(is);
-
-        //设置了true，则不用调用commit
-        SqlSession session = sessionFactory.openSession(true);
+        SqlSession session = MybatisInit.getSqlSessionFactory().openSession(true);
         List<PhoneUser> carsList = session.selectList("selectPhoneUser");
         for (PhoneUser car : carsList) {
             System.out.println(car.toString());

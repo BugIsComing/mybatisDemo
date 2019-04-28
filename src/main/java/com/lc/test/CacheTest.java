@@ -2,10 +2,7 @@ package com.lc.test;
 
 import com.lc.model.User;
 import org.apache.ibatis.session.SqlSession;
-import org.apache.ibatis.session.SqlSessionFactory;
-import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
-import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -16,11 +13,7 @@ import java.util.Map;
  */
 public class CacheTest {
     public static void main(String[] args) {
-        String resource = "Configuration.xml";
-        InputStream is = App.class.getClassLoader().getResourceAsStream(resource);
-        SqlSessionFactory sessionFactory = new SqlSessionFactoryBuilder().build(is);
-
-        SqlSession session = sessionFactory.openSession();
+        SqlSession session = MybatisInit.getSqlSessionFactory().openSession();
         /**
          * 如果要测试mybatis的缓存，需要在配置文件中增加setting
          */
@@ -87,7 +80,7 @@ public class CacheTest {
         /**
          * 插入语句
          */
-        SqlSession session1 = sessionFactory.openSession();
+        SqlSession session1 = MybatisInit.getSqlSessionFactory().openSession();
         temp = 2;
         params.clear();
         params.put("name", "LC88");
@@ -125,7 +118,7 @@ public class CacheTest {
         System.out.println("------------------------------试验四--------------------------------------------");
         params.clear();
         params.put("age", 2);
-        params.put("name","LC");
+        params.put("name", "LC");
         userList = session.selectList("getUserByAgeAndName", params);
 
         /**

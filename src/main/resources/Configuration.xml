@@ -47,6 +47,7 @@
         <mapper resource="mapper/phoneMapper.xml"/>
         <mapper resource="mapper/cacheMapper.xml"/>
         <mapper resource="mapper/departmentMapper.xml"/>
+        <mapper resource="autoMappers/UserInfoPOMapper.xml"/>
     </mappers>
 
 </configuration>

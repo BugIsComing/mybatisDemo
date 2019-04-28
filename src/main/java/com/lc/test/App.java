@@ -3,10 +3,7 @@ package com.lc.test;
 import com.lc.dao.UserMapper;
 import com.lc.model.User;
 import org.apache.ibatis.session.SqlSession;
-import org.apache.ibatis.session.SqlSessionFactory;
-import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
-import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,21 +15,7 @@ import java.util.Random;
  */
 public class App {
     public static void main(String[] args) {
-        /**
-         * 将运行时生成的代理类（.class文件）输出到本地路径下；在通过Mapper方式时才会动态生成class文件
-         */
-        System.getProperties().put("sun.misc.ProxyGenerator.saveGeneratedFiles", "true");
-        String resource = "Configuration.xml";
-        InputStream is = App.class.getClassLoader().getResourceAsStream(resource);
-        /**
-         * 此处build没有传递environment，则使用配置文件中environment的Default
-         * 如果要选择不同的数据源，可以使用build(InputStream inputStream, String environment)
-         */
-        SqlSessionFactory sessionFactory = new SqlSessionFactoryBuilder().build(is);
-
-        SqlSession session = sessionFactory.openSession();
-
-
+        SqlSession session = MybatisInit.getSqlSessionFactory().openSession();
         UserMapper userMapper = session.getMapper(UserMapper.class);
 
         //执行查询返回一个唯一user对象的sql
@@ -75,8 +58,8 @@ public class App {
          * D操作
          */
         params.clear();
-        params.put("age",temp);
-        session.delete("deleteUser",params);
+        params.put("age", temp);
+        session.delete("deleteUser", params);
         /**
          * session必须提交，否则无法写入到数据库
          * 如果在Configuration.xml中设置了defaultAutoCommit，则不需要这一行

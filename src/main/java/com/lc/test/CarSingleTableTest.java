@@ -2,10 +2,7 @@ package com.lc.test;
 
 import com.lc.model.CarSingleTable;
 import org.apache.ibatis.session.SqlSession;
-import org.apache.ibatis.session.SqlSessionFactory;
-import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
-import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -16,12 +13,8 @@ import java.util.Map;
  */
 public class CarSingleTableTest {
     public static void main(String[] args) {
-        String resource = "Configuration.xml";
-        InputStream is = App.class.getClassLoader().getResourceAsStream(resource);
-        SqlSessionFactory sessionFactory = new SqlSessionFactoryBuilder().build(is);
 
-        //设置了true，则不用调用commit
-        SqlSession session = sessionFactory.openSession(true);
+        SqlSession session = MybatisInit.getSqlSessionFactory().openSession(true);
         List<CarSingleTable> carsList = session.selectList("selectCars");
         for (CarSingleTable car : carsList) {
             System.out.println(car.toString());
